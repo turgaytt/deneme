@@ -5,6 +5,7 @@ services:
     build:
       context: ./mysql
       dockerfile: Dockerfile
+    image: turgaytt/deneme:mysql-latest  # Docker Hub'daki özel repo
     container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
@@ -22,6 +23,7 @@ services:
     build:
       context: ./python
       dockerfile: Dockerfile
+    image: turgaytt/deneme:python-app-latest  # Docker Hub'daki özel repo
     container_name: python_app
     depends_on:
       - mysql
@@ -34,6 +36,7 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
+    image: turgaytt/deneme:nginx-latest  # Docker Hub'daki özel repo
     container_name: nginx_server
     ports:
       - "8080:80"
