@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Addition</title>
+    <script>
+        async function fetchResults() {
+            const response = await fetch('http://localhost:5001/results');
+            const results = await response.json();
+
+            const tableBody = document.getElementById('results-table-body');
+            tableBody.innerHTML = '';
+
+            results.forEach(row => {
+                const tr = document.createElement('tr');
+                const num1Td = document.createElement('td');
+                const num2Td = document.createElement('td');
+                const resultTd = document.createElement('td');
+
+                num1Td.textContent = row[0]; // num1
+                num2Td.textContent = row[1]; // num2
+                resultTd.textContent = row[2]; // result
+
+                tr.appendChild(num1Td);
+                tr.appendChild(num2Td);
+                tr.appendChild(resultTd);
+                tableBody.appendChild(tr);
+            });
+        }
+
+        window.onload = fetchResults;
+    </script>
+</head>
+<body>
+    <h1>Add Two Numbers</h1>
+    <form action="http://localhost:5001/add" method="POST" onsubmit="fetchResults();">
+        <label for="num1">Number 1:</label>
+        <input type="text" id="num1" name="num1" required>
+        
+        <label for="num2">Number 2:</label>
+        <input type="text" id="num2" name="num2" required>
+        
+        <button type="submit">Add</button>
+    </form>    
+
+    <h2>Results</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Num1</th>
+                <th>Num2</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody id="results-table-body">
+        </tbody>
+    </table>
+</body>
+</html>

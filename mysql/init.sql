@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS results (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    num1 INT NOT NULL,
+    num2 INT NOT NULL,
+    result INT NOT NULL
+);
